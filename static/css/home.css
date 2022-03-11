@@ -1,0 +1,79 @@
+  .bg-image {
+    background-color: black;
+
+  }
+  
+  .bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+    color: white;
+    border: 3px solid #f1f1f1;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+  .btn-success:hover{
+      
+      padding: 15px;
+      transition: 500ms;
+      color: black;
+  }
+  .btn-success:after{
+      
+    padding: 0;
+    transition: 500ms;
+}
+/*  -----------------------------------------------end home css-----------------------------------------------  */
+
+/*  -----------------------------------------------header and footer css-----------------------------------------------  */
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  a:hover {color: rgb(0, 0, 0)!important;
+  text-decoration: none;
+  }
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  html,body{
+    height: 100%;
+  }
+  
+
+  /* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+    height: 30vh;
+    padding-top: 5vh;
+  }
+  
+  .footer {
+    margin-top: auto;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+   
+ 
+    background-color: #f5f5f5;
+  }
+  

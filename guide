@@ -1,0 +1,26 @@
+STEP TO INSTALL AND RUN THE PROJECT:
+
+1. Install Python 3.8.5 in the 'Project-code' folder and check the checkbox of 'add-path'and install for 'all users' while installation.
+2. Open 'Project-code' folder in cmd.
+3. Run command 'pip install virtualenv' to install virtualenv for python.
+4. Run command 'virtualenv env'.
+5. Run command 'env\Scripts\activate' to activate the virtualenv.
+6. Run command 'pip install matplotlib'.
+7. Run command 'pip install keras'.
+8. Run command 'pip install tensorflow'.
+9. Run command 'pip install flask'
+
+Please change the path of the data-set in the below files in order to run the code.
+change the path to the path of data-set in your system.
+ex:, '....../project-code/covid-images' for covid data set.
+
+10. Run command 'python train-test-split.py'.
+11. Run command 'python resize.py'
+12. Run command 'python crop.py'.
+13. Run command 'python cnn_train.py'.
+14. Run command 'python app.py'.
+15. After step 9 open browser and open http://localhost:5000/.
+
+Please follow the same order of exicution to face no issues.
+
+Thank you, KARTHIKEYA HS.

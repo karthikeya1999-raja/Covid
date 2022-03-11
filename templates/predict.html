@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="undefined" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="undefined" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="static/css/home.css">
+        <title>Predict</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="p-2  text-white" href="#" >Covid-19 Predictor </a></h5>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse " id="navbarsExample03">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link p-2 text-white" href="http://localhost:5000/"><i class=" fa fa-tasks"></i> Prediction <span class="sr-only">(current)</span></a>
+              </li>
+          </div>
+        </nav>
+        <form id="upload-file" method="post" enctype="multipart/form-data">
+            <div style="background-color: black; padding-top: 10vh;" class="align-items-center text-center">
+                <h1 style="color: white;">COVID-19 TESTING USING X-RAY IMAGES</h1>
+                <input name="file" type="file"id="image" class="btn btn-success">
+                <button id="predict-btn" type="button" class="btn btn-success">Upload</button>
+                <p class=" font-weight-bold"> <span id="result"></span></p>
+                <img id="selected-image"  width="200" height="200" alt="Your selected image will be displayed here!" style="color: white;">
+            </div>
+        </form>
+
+        <script>
+            $(function() {
+                let base64Image;
+                $("#image").change(function() {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        let dataURL = reader.result;
+                        $('#selected-image').attr("src", dataURL);
+                        base64Image = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                        //console.log(base64Image);
+                    }
+                    reader.readAsDataURL($("#image")[0].files[0]);
+                    $("#result").text("");
+
+                });
+                $('#predict-btn').click(function() {
+                    var form_data = new FormData($('#upload-file')[0]);
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:5000/predict',
+                        data: form_data,
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        success: function(res) {
+                          console.log(res);
+                            $("#result").text("Our prediction is "+res["prediction"]+" with accuracy "+res["accuracy"]);
+                            if(res["prediction"]=='Covid19'){
+                              document.getElementById('result').style.color = "red";
+                              let confirm_value=confirm(' Your affected by covid 19 would you like to call 108');
+                              if( confirm_value){
+                                alert('calling 108');
+                              }
+                            }
+                            else if(res["prediction"]=='Pneumonia'){
+                              document.getElementById('result').style.color = "yellow";
+                              let confirm_value=confirm(' Your affected by Pneumonia would you like to call 108');
+                              if( confirm_value){
+                                alert('calling 108');
+                              }
+                            }
+                            else{
+                              document.getElementById('result').style.color = "green";
+                              alert('You are safe and normal');
+                            }
+                            console.log('Success!',res);
+                        },
+                    });
+                });
+            });
+        </script>
+
+        <footer class="footer mt-auto" style="background-color: #343A40; margin-bottom: 0px !important;">
+          <div class="container" style="text-align: center; ">
+          <span class="text-white">copyright &copy; 2020-21  all rights reserved </span> <br> <br>
+          <span class="text-white">Follow us on: </span> 
+          <!-- <div class="template-demo"> <button type="button" class="btn btn-social-icon btn-outline-facebook"><i class="fa fa-facebook"></i></button> <button type="button" class="btn btn-social-icon btn-outline-youtube"><i class="fa fa-youtube"></i></button> <button type="button" class="btn btn-social-icon btn-outline-twitter"><i class="fa fa-twitter"></i></button> <button type="button" class="btn btn-social-icon btn-outline-dribbble"><i class="fa fa-dribbble"></i></button> <button type="button" class="btn btn-social-icon btn-outline-linkedin"><i class="fa fa-linkedin"></i></button> <button type="button" class="btn btn-social-icon btn-outline-instagram"><i class="fa fa-instagram"></i></button> </div> -->
+          <br>
+          <a href="https://www.facebook.com" class="fa fa-facebook"></a> &nbsp; &nbsp;
+          <a href="https://www.twitter.com" class="fa fa-twitter"></a>  &nbsp; &nbsp;
+          <a href="https://www.instagram.com" class="fa fa-instagram"></a> &nbsp; &nbsp;
+          <a href="https://www.google.com" class="fa fa-google"></a> &nbsp; &nbsp;
+          </div>            
+        </footer>
+
+    </body>
+</html>
