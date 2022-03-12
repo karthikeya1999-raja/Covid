@@ -1,7 +1,7 @@
 STEP TO INSTALL AND RUN THE PROJECT:
 
 1. Install Python 3.8.5 in the 'Project-code' folder and check the checkbox of 'add-path'and install for 'all users' while installation.
-2. Open 'Project-code' folder in cmd.
+2. Open 'Covid' folder in cmd.
 3. Run command 'pip install virtualenv' to install virtualenv for python.
 4. Run command 'virtualenv env'.
 5. Run command 'env\Scripts\activate' to activate the virtualenv.
@@ -13,6 +13,17 @@ STEP TO INSTALL AND RUN THE PROJECT:
 Please change the path of the data-set in the below files in order to run the code.
 change the path to the path of data-set in your system.
 ex:, '....../Covid/covid-images' for covid data set.
+
+Please create a folder structure like bellow:
+....../Covid/source/test/covid
+....../Covid/source/test/normal
+....../Covid/source/test/pneumoia
+....../Covid/source/train/covid
+....../Covid/source/train/normal
+....../Covid/source/train/pneumonia
+and
+....../Covid/downsample/test
+....../Covid/downsample/train
 
 10. Run command 'python train-test-split.py'.
 11. Run command 'python resize.py'
