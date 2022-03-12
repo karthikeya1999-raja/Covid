@@ -12,7 +12,7 @@ STEP TO INSTALL AND RUN THE PROJECT:
 
 Please change the path of the data-set in the below files in order to run the code.
 change the path to the path of data-set in your system.
-ex:, '....../project-code/covid-images' for covid data set.
+ex:, '....../Covid/covid-images' for covid data set.
 
 10. Run command 'python train-test-split.py'.
 11. Run command 'python resize.py'
